@@ -1,0 +1,85 @@
+/* ========================================
+   کیلومتر (Gauge)
+   ======================================== */
+.pqm-gauge-wrap{
+	max-width:320px;
+	margin:20px auto;
+	text-align:center;
+	position:relative;
+	padding:8px 0;
+	overflow:hidden; /* 🆕 جلوگیری از بیرون‌زدگی */
+}
+.pqm-gauge{
+	width:100%;
+	height:auto;
+	display:block;
+	overflow:hidden; /* 🆕 */
+}
+.pqm-gauge-fill{
+	animation:pqm-gauge-anim 1.6s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes pqm-gauge-anim{from{opacity:0}to{opacity:1}}
+.pqm-gauge-value{
+	position:relative;
+	margin-top:-8px;
+	text-align:center;
+	line-height:1.2;
+}
+.pqm-gauge-number{
+	display:inline-block;
+	font-size:32px;
+	font-weight:800;
+	color:#0f172a;
+	letter-spacing:-0.5px;
+}
+.pqm-gauge-max{
+	display:inline-block;
+	font-size:13px;
+	color:#64748b;
+	margin-right:4px;
+	font-weight:600;
+}
+.pqm-gauge-percent{
+	display:block;
+	font-size:13px;
+	color:#6366f1;
+	font-weight:700;
+	margin-top:4px;
+}
+/* ========================================
+   تاریخچه نتایج
+   ======================================== */
+.pqm-history{margin-top:28px;padding-top:22px;border-top:2px dashed #e2e8f0}
+.pqm-history-title{font-size:17px;font-weight:800;margin:0 0 14px;color:#1e293b}
+.pqm-history-list{display:grid;gap:10px}
+.pqm-history-item{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#f8fafc,#fff);border:1px solid #e2e8f0;border-radius:12px;transition:all .2s}
+.pqm-history-item:hover{border-color:#6366f1;transform:translateY(-2px);box-shadow:0 6px 16px rgba(99,102,241,.1)}
+.pqm-history-item.pqm-current{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-color:#3b82f6;box-shadow:0 4px 12px rgba(59,130,246,.2)}
+.pqm-history-info{display:flex;flex-direction:column;gap:3px}
+.pqm-history-label{font-weight:700;font-size:14px;color:#1e293b}
+.pqm-current-badge{display:inline-block;background:#3b82f6;color:#fff;padding:1px 8px;border-radius:999px;font-size:10px;font-weight:700;margin-right:6px}
+.pqm-history-date{font-size:12px;color:#64748b}
+.pqm-history-score-wrap{display:flex;align-items:baseline;gap:3px}
+.pqm-history-score{font-size:20px;font-weight:800;color:#6366f1}
+.pqm-history-max{font-size:12px;color:#94a3b8;font-weight:600}
+
+@media (max-width:640px){
+	.pqm-gauge-number{font-size:38px}
+	.pqm-history-item{flex-direction:column;align-items:flex-start;gap:8px}
+	.pqm-history-score-wrap{align-self:flex-end}
+}
+.pqm-radar-wrap{max-width:420px;margin:10px auto}
+.pqm-radar{width:100%;height:auto;display:block}
+.pqm-ring{fill:none;stroke:#e2e8f0;stroke-width:1.5}
+.pqm-axis{stroke:#cbd5e1;stroke-width:1.5}
+.pqm-axis-label{fill:#64748b;font-size:12px;font-weight:700}
+.pqm-shape{fill:rgba(99,102,241,.25);stroke:#6366f1;stroke-width:2.5;animation:pq-in .8s both}
+.pqm-dot{fill:#6366f1;stroke:#fff;stroke-width:2}
+.pqm-card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:20px;margin-top:18px;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.pqm-card-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.pqm-emoji{font-size:40px}
+.pqm-title{margin:0;font-size:20px;font-weight:800;color:#0f172a}
+.pqm-pair{margin:2px 0 0;color:#64748b;font-size:13px;font-weight:700}
+.pqm-section h4{margin:12px 0 6px;font-size:15px}
+.pqm-section p{margin:0;line-height:2;color:#334155;font-size:14px}
+@media (max-width:640px){.pqm-bar-label{flex:0 0 84px;font-size:12px}}
