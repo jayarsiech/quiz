@@ -1,0 +1,17 @@
+/* Poian Quiz — Kolb Engine Styles */
+.pqk-head{text-align:center;margin:14px 0}
+.pqk-badge{display:inline-flex;align-items:center;gap:8px;padding:9px 22px;border-radius:999px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:17px;font-weight:800}
+.pqk-chart-wrap{max-width:560px;margin:8px auto}
+.pqk-chart{width:100%;height:auto;display:block}
+.pqk-axis{stroke:#94a3b8;stroke-width:2}
+.pqk-axis-label{fill:#64748b;font-size:13px}
+.pqk-q-label{fill:#334155;font-size:15px;font-weight:700}
+.pqk-qt{opacity:.5}
+.pqk-qt-tr{fill:rgba(16,185,129,.06)}.pqk-qt-tl{fill:rgba(99,102,241,.06)}.pqk-qt-br{fill:rgba(245,158,11,.06)}.pqk-qt-bl{fill:rgba(239,68,68,.06)}
+.pqk-guide{stroke:#6366f1;stroke-width:2;stroke-dasharray:6 6;animation:pqk-dash 1s .5s both}
+.pqk-val{fill:#6366f1;font-size:14px;font-weight:700}
+.pqk-point{fill:#6366f1;stroke:#fff;stroke-width:3;transform-box:fill-box;transform-origin:center;animation:pqk-pop .6s .4s cubic-bezier(.34,1.56,.64,1) both}
+.pqk-point-halo{fill:none;stroke:#6366f1;stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pqk-halo 2.2s 1s infinite}
+@keyframes pqk-pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes pqk-dash{from{stroke-dashoffset:140}to{stroke-dashoffset:0}} 
+@keyframes pqk-halo{0%{transform:scale(1);opacity:.5}100%{transform:scale(2.4);opacity:0}}
