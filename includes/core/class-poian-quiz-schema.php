@@ -45,7 +45,11 @@ final class Poian_Quiz_Schema {
 					if ( ! in_array( (string) $value, $option_keys, true ) ) { return self::bad(); }
 					$clean[ $fid ] = (string) $value;
 					break;
-
+		        case 'select':
+						if ( ! is_string( $value ) && ! is_numeric( $value ) ) { return self::bad(); }
+						if ( ! in_array( (string) $value, $option_keys, true ) ) { return self::bad(); }
+						$clean[ $fid ] = (string) $value;
+						break;
 				case 'checkbox':
 					if ( ! is_array( $value ) ) { return self::bad(); }
 					$vals = array_values( array_map( 'strval', $value ) );
@@ -214,7 +218,7 @@ final class Poian_Quiz_Schema {
 	 * ساختار جدید: آرایه fields در ریشه (نه pages).
 	 */
 	public static function sanitize_schema( array $raw ) {
-		$types = array( 'radio', 'checkbox', 'rank', 'text', 'textarea', 'description', 'heading', 'page_break' );
+		$types = array( 'radio', 'checkbox', 'select', 'rank', 'text', 'textarea', 'description', 'heading', 'page_break' );
 		$out   = array(
 			'title'  => isset( $raw['title'] ) ? sanitize_text_field( $raw['title'] ) : '',
 			'fields' => array(),
