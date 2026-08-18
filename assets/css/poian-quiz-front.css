@@ -1,0 +1,108 @@
+/* Poian Quiz — Front */
+.pq-app{--pq-p:#6366f1;--pq-p2:#8b5cf6;--pq-line:#e2e8f0;--pq-mut:#64748b;max-width:860px;margin:0 auto;padding:20px 14px 70px}
+.pq-hidden{display:none!important}
+.pq-card,.pq-page,.pq-result{background:#fff;border:1px solid var(--pq-line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.pq-gate{max-width:460px;margin:40px auto;padding:32px 22px;text-align:center}
+.pq-page{padding:20px 18px;margin-bottom:16px;animation:pq-in .45s both}
+.pq-page-heading{margin:0 0 8px;font-size:19px;font-weight:800}
+.pq-page-desc{color:var(--pq-mut);line-height:1.9;font-size:14px;margin-bottom:14px}
+.pq-field{margin:16px 0}
+.pq-q-title{font-weight:700;font-size:15px;line-height:1.8;margin:0 0 8px}
+.pq-req{color:#ef4444}
+.pq-fdesc,.pq-desc{color:var(--pq-mut);font-size:13px;line-height:1.9;margin:0 0 8px}
+.pq-fheading{font-size:17px;font-weight:800;margin:8px 0}
+.pq-options{display:flex;flex-direction:column;gap:8px}
+.pq-option{display:flex;align-items:center;gap:10px;background:#f8fafc;border:1.5px solid var(--pq-line);border-radius:12px;padding:11px 13px;cursor:pointer;transition:border-color .2s,background .2s}
+.pq-option:hover{border-color:var(--pq-p);background:#eef2ff}
+.pq-option input{accent-color:var(--pq-p);width:18px;height:18px;flex:0 0 auto}
+.pq-option-text{font-size:14px;line-height:1.8}
+.pq-rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pq-rank .pq-option{cursor:default}
+.pq-handle{cursor:grab;touch-action:none;color:var(--pq-mut);display:flex;padding:6px;border-radius:8px}
+.pq-handle svg{width:20px;height:20px;fill:currentColor}
+.pq-dragging{opacity:.6;border:2px dashed var(--pq-p);background:#fff}
+.pq-movers{margin-inline-start:auto;display:flex;flex-direction:column;gap:3px}
+.pq-move{width:30px;height:24px;border:1px solid var(--pq-line);background:#fff;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--pq-mut);padding:0}
+.pq-move svg{width:16px;height:16px;fill:currentColor}
+.pq-input{width:100%;border:1.5px solid var(--pq-line);border-radius:10px;padding:10px 12px;font-size:14px;background:#fff}
+.pq-input:focus{border-color:var(--pq-p);outline:none}
+.pq-missing .pq-q-title,.pq-missing .pq-input{color:#ef4444;border-color:#ef4444}
+.pq-progress-wrap{background:#fff;border:1px solid var(--pq-line);border-radius:14px;padding:14px;margin-bottom:16px}
+.pq-progress-bar{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+.pq-progress-fill{height:100%;background:linear-gradient(90deg,var(--pq-p),var(--pq-p2));border-radius:999px;transition:width .4s;position:relative}
+.pq-progress-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:pq-shine 2s infinite}
+.pq-progress-text{text-align:center;margin:8px 0 0;color:var(--pq-mut);font-size:13px;font-weight:700}
+.pq-nav{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.pq-btn{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--pq-line);background:#fff;border-radius:12px;padding:11px 24px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
+.pq-btn:hover{border-color:var(--pq-p);color:var(--pq-p)}
+.pq-btn-primary{background:linear-gradient(135deg,var(--pq-p),var(--pq-p2));border-color:transparent;color:#fff;box-shadow:0 10px 26px rgba(99,102,241,.35)}
+.pq-btn-primary:hover{transform:translateY(-2px);color:#fff}
+.pq-loading{opacity:.55;pointer-events:none}
+.pq-actions{text-align:center;margin-top:20px}
+.pq-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:#0f172a;color:#fff;padding:12px 22px;border-radius:12px;opacity:0;transition:all .3s;z-index:2147483647;max-width:92vw;text-align:center;font-size:14px;display:none!important;pointer-events:none}
+.pq-toast.pq-show{opacity:1;transform:translateX(-50%) translateY(0)}
+.pq-toast.pq-err{background:#ef4444}
+@keyframes pq-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes pq-shine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+@media (max-width:640px){.pq-page{padding:14px 12px}.pq-move{width:36px;height:30px}}
+@media (prefers-reduced-motion:reduce){.pq-app *{animation:none!important;transition:none!important}}
+/* ========================================
+   فاز D — Custom Select (div > ul > li)
+   ======================================== */
+
+.pq-select{position:relative;display:inline-block;width:100%;max-width:420px}
+
+/* دکمه اصلی */
+.pq-select-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:11px 14px;background:#fff;border:1.5px solid var(--pq-line);border-radius:12px;font-size:14px;cursor:pointer;transition:all .2s;text-align:right;font-family:inherit;color:inherit}
+.pq-select-btn:hover{border-color:var(--pq-p);background:#f8fafc}
+.pq-select-btn:focus{outline:none;border-color:var(--pq-p);box-shadow:0 0 0 3px rgba(99,102,241,.15)}
+.pq-select-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pq-select-arrow{display:flex;align-items:center;color:var(--pq-mut);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.pq-select.pq-open .pq-select-arrow{transform:rotate(180deg)}
+
+/* لیست dropdown */
+.pq-select-list{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#fff;border:1.5px solid var(--pq-line);border-radius:14px;box-shadow:0 12px 36px rgba(15,23,42,.14);max-height:260px;overflow-y:auto;z-index:1000;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .25s cubic-bezier(.4,0,.2,1);list-style:none;margin:0;padding:6px}
+.pq-select.pq-open .pq-select-list{opacity:1;visibility:visible;transform:translateY(0)}
+
+/* آیتم‌های لیست */
+.pq-select-item{padding:11px 14px;border-radius:9px;cursor:pointer;font-size:14px;transition:background .15s,color .15s;outline:none;line-height:1.6}
+.pq-select-item:hover,.pq-select-item:focus{background:#eef2ff;color:var(--pq-p)}
+.pq-select-item.pq-selected{background:linear-gradient(135deg,var(--pq-p),var(--pq-p2));color:#fff;font-weight:700}
+.pq-select-item.pq-selected:hover,.pq-select-item.pq-selected:focus{background:linear-gradient(135deg,var(--pq-p),var(--pq-p2))}
+
+/* Scrollbar سفارشی برای لیست */
+.pq-select-list::-webkit-scrollbar{width:6px}
+.pq-select-list::-webkit-scrollbar-track{background:#f1f5f9;border-radius:3px}
+.pq-select-list::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+.pq-select-list::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+/* واکنش‌گرا */
+@media (max-width:640px){
+	.pq-select{max-width:100%}
+	.pq-select-list{max-height:220px}
+}
+/* ========================================
+   فاز ۴-۵ — شماره سوال و Page Break
+   ======================================== */
+
+/* شماره سوال */
+.pq-q-num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;background:linear-gradient(135deg,var(--pq-p),var(--pq-p2));color:#fff;border-radius:50%;font-size:13px;font-weight:800;margin-left:8px;flex-shrink:0}
+
+/* عنوان سوال با شماره */
+.pq-q-title{display:flex;align-items:flex-start;gap:4px;font-weight:700;font-size:15px;line-height:1.8;margin:0 0 8px}
+
+/* صفحه خالی */
+.pq-empty-form{background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:30px;text-align:center;color:#991b1b}
+
+/* انیمیشن ورود صفحه */
+.pq-page{animation:pq-page-in .4s ease-out}
+@keyframes pq-page-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* فیلد خالی (خطا) */
+.pq-missing{border-color:#ef4444!important;background:#fef2f2!important}
+.pq-missing .pq-q-title{color:#ef4444}
+.pq-missing .pq-input{border-color:#ef4444}
+
+/* واکنش‌گرا */
+@media (max-width:640px){
+	.pq-q-num{min-width:24px;height:24px;font-size:11px}
+}
