@@ -100,6 +100,7 @@
 		textarea:    { icon: '📝', label: 'متن پاراگرافی', numbered: false },
 		radio:       { icon: '🔘', label: 'رادیو', numbered: true },
 		checkbox:    { icon: '☑️', label: 'چک‌باکس', numbered: true },
+		select:      { icon: '📋', label: 'انتخابی (لیست)', numbered: true },
 		rank:        { icon: '↕️', label: 'درگ‌دراپ (رتبه)', numbered: true },
 		description: { icon: '💬', label: 'صفحه توضیحات', numbered: false },
 		page_break:  { icon: '📄', label: 'جداکننده صفحه', numbered: false }
@@ -135,7 +136,7 @@
 		h1.addEventListener('click', function () { acc1.classList.toggle('pq-open'); });
 		var b1 = el('div', 'pq-accordion-body');
 
-		var numberedTypes = ['radio', 'checkbox', 'text', 'textarea', 'rank'];
+		var numberedTypes = ['radio', 'checkbox', 'select', 'text', 'textarea', 'rank'];
 		numberedTypes.forEach(function (type) {
 			var def = FIELD_DEFS[type];
 			var item = el('div', 'pq-toolbox-item pq-numbered');
@@ -155,7 +156,7 @@
 		h2.addEventListener('click', function () { acc2.classList.toggle('pq-open'); });
 		var b2 = el('div', 'pq-accordion-body');
 
-		var stdTypes = ['text', 'textarea', 'radio', 'checkbox', 'rank', 'description', 'page_break'];
+		var stdTypes = ['text', 'textarea', 'radio', 'checkbox', 'select', 'rank', 'description', 'page_break'];
 		stdTypes.forEach(function (type) {
 			var def = FIELD_DEFS[type];
 			var item = el('div', 'pq-toolbox-item');
@@ -292,7 +293,7 @@
 	/* ---------------- افزودن فیلد ---------------- */
 	function addField(type, numbered) {
 		var newId = uid('f');
-		var needsOpts = (type === 'radio' || type === 'checkbox' || type === 'rank');
+		var needsOpts = (type === 'radio' || type === 'checkbox' || type === 'select' || type === 'rank');
 		var field = {
 			id: newId,
 			type: type,
