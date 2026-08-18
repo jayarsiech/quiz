@@ -44,19 +44,19 @@ final class Poian_Quiz_Plugin {
 		}
 
 		// لایه ۲: اضافه مستقیم به کاربر فعلی با ذخیره در دیتابیس
-		if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
+	if ( is_user_logged_in() && current_user_can( 'manage_options' ) ) {
 			$current = wp_get_current_user();
 			if ( ! $current->has_cap( POIAN_QUIZ_CAP ) ) {
-				global $wpdb;
-				$caps_key = $wpdb->prefix . 'capabilities';
-				$caps     = get_user_meta( $current->ID, $caps_key, true );
+				$caps = $current->caps;
 				if ( ! is_array( $caps ) ) { $caps = array(); }
 				$caps[ POIAN_QUIZ_CAP ] = true;
-				update_user_meta( $current->ID, $caps_key, $caps );
+				
+				$role = get_role( 'administrator' );
+				if ( $role ) {
+					$role->add_cap( POIAN_QUIZ_CAP );
+				}
 				
 				clean_user_cache( $current->ID );
-				wp_cache_delete( $current->ID, 'user_meta' );
-				wp_cache_delete( $current->ID, 'users' );
 			}
 		}
 	}
