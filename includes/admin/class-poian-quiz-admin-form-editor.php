@@ -36,8 +36,7 @@ final class Poian_Quiz_Admin_Form_Editor {
 		}
 		$schema  = Poian_Quiz_Schema::sanitize_schema( $schema_raw );
 		$actions = Poian_Quiz_Schema::sanitize_actions( json_decode( isset( $_POST['pq_actions_json'] ) ? wp_unslash( $_POST['pq_actions_json'] ) : '', true ) ?: array() );
-		$settings = $this->read_form_settings();
-
+		$settings = $this->read_form_settings( $form_id );
 		// ۳) ساخت یا به‌روزرسانی فرم
 		if ( ! $form_id ) {
 			$form_id = Poian_Quiz_Forms::create(
@@ -131,7 +130,14 @@ final class Poian_Quiz_Admin_Form_Editor {
 
 		return $out;
 	}
-	private function read_form_settings() {
+	private function read_form_settings( $form_id = 0 ) {
+		// دریافت تنظیمات فعلی فرم برای حفظ مقادیری که تغییر نکرده‌اند
+		$current = array();
+		if ( $form_id > 0 ) {
+			$current = get_post_meta( $form_id, Poian_Quiz_Forms::META_SETTINGS, true );
+			if ( ! is_array( $current ) ) { $current = array(); }
+		}
+		
 		$out = array();
 		$map = array(
 			'require_login'    => array( '0', '1' ),
@@ -144,8 +150,13 @@ final class Poian_Quiz_Admin_Form_Editor {
 			'history_count'    => array( '0', '5', '10', '-1' ),
 		);
 		foreach ( $map as $key => $rule ) {
-			$raw = isset( $_POST[ 'fs_' . $key ] ) ? wp_unslash( $_POST[ 'fs_' . $key ] ) : 'inherit';
-			if ( 'inherit' === $raw || '' === $raw ) { $out[ $key ] = 'inherit'; continue; }
+			$raw = isset( $_POST[ 'fs_' . $key ] ) ? wp_unslash( $_POST[ 'fs_' . $key ] ) : null;
+			if ( null === $raw || '' === $raw ) {
+				// اگر مقدار ارسال نشده، از تنظیمات فعلی استفاده کن یا 'inherit'
+				$out[ $key ] = isset( $current[ $key ] ) ? $current[ $key ] : 'inherit';
+				continue;
+			}
+			if ( 'inherit' === $raw ) { $out[ $key ] = 'inherit'; continue; }
 			if ( is_array( $rule ) ) { $out[ $key ] = in_array( $raw, $rule, true ) ? $raw : 'inherit'; }
 			else { $out[ $key ] = max( 0, absint( $raw ) ); }
 		}
