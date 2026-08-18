@@ -90,8 +90,22 @@ $pk_has_pages = $pk_total_pages > 1;
 												<span class="pq-option-text"><?php echo esc_html( isset( $pk_o['label'] ) ? $pk_o['label'] : '' ); ?></span>
 											</label>
 										<?php endforeach; ?>
-									</div>
-
+									</div> 
+									<?php elseif ( 'select' === $pk_type ) : ?>
+										<div class="pq-select-list">
+											<ul>
+												<?php foreach ( (array) $pk_f['options'] as $pk_o ) : ?>
+													<li>
+														<label class="pq-option">
+															<input type="radio"
+																name="pq_<?php echo esc_attr( $pk_fid ); ?>"
+																value="<?php echo esc_attr( isset( $pk_o['key'] ) ? $pk_o['key'] : '' ); ?>" />
+															<span class="pq-option-text"><?php echo esc_html( isset( $pk_o['label'] ) ? $pk_o['label'] : '' ); ?></span>
+														</label>
+													</li>
+												<?php endforeach; ?>
+											</ul>
+										</div>
 								<?php elseif ( 'rank' === $pk_type ) : ?>
 									<ul class="pq-rank">
 										<?php
