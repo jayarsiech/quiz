@@ -296,7 +296,6 @@ final class Poian_Quiz_Repository {
 		// scores: حذف قدیمی‌ها + درج جدید
 		$wpdb->delete( self::table_scores(), array( 'attempt_id' => (int) $attempt_id ), array( '%d' ) );
 		$form_id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT form_id FROM " . self::table_attempts() . " WHERE id = %d", (int) $attempt_id ) );
-		$user_id = (int) $user_id;
 		$scores  = isset( $result['scores'] ) && is_array( $result['scores'] ) ? $result['scores'] : array();
 		foreach ( $scores as $dim => $val ) {
 			$wpdb->insert( self::table_scores(), array(
