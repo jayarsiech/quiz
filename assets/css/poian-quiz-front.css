@@ -75,6 +75,46 @@
 .pq-select-list::-webkit-scrollbar-track{background:#f1f5f9;border-radius:3px}
 .pq-select-list::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
 .pq-select-list::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+/* استایل فیلد انتخابی به صورت لیست */
+.pq-select-list ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.pq-select-list li {
+	margin-bottom: 8px;
+}
+
+.pq-select-list .pq-option {
+	display: flex;
+	align-items: center;
+	padding: 10px 14px;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.pq-select-list .pq-option:hover {
+	background: #f0f0f0;
+	border-color: #aaa;
+}
+
+.pq-select-list .pq-option input[type="radio"] {
+	margin-left: 0;
+	margin-right: 10px;
+}
+
+.pq-select-list .pq-option input[type="radio"]:checked + .pq-option-text {
+	font-weight: bold;
+	color: #2271b1;
+}
+
+.pq-select-list .pq-option-text {
+	flex: 1;
+}
 /* واکنش‌گرا */
 @media (max-width:640px){
 	.pq-select{max-width:100%}
