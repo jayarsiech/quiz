@@ -27,7 +27,7 @@ class Poian_Quiz_Engine_Weighted_Sum extends Poian_Quiz_Engine {
 			}
 
 			$val = $answers[ $fid ];
-			if ( 'radio' === $field['type'] ) {
+			if ( 'radio' === $field['type'] || 'select' === $field['type'] ) {
 				$scores[ $dim ] += isset( $weights[ $val ] ) ? $weights[ $val ] : 0;
 			} elseif ( 'checkbox' === $field['type'] && is_array( $val ) ) {
 				foreach ( $val as $k ) {

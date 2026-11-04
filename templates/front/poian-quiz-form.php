@@ -92,6 +92,14 @@ $pk_has_pages = $pk_total_pages > 1;
 										<?php endforeach; ?>
 									</div>
 
+								<?php elseif ( 'select' === $pk_type ) : ?>
+									<select class="pq-input" name="pq_<?php echo esc_attr( $pk_fid ); ?>">
+										<option value=""><?php esc_html_e( '— انتخاب کنید —', 'poian-quiz' ); ?></option>
+										<?php foreach ( (array) $pk_f['options'] as $pk_o ) : ?>
+											<option value="<?php echo esc_attr( isset( $pk_o['key'] ) ? $pk_o['key'] : '' ); ?>"><?php echo esc_html( isset( $pk_o['label'] ) ? $pk_o['label'] : '' ); ?></option>
+										<?php endforeach; ?>
+									</select>
+
 								<?php elseif ( 'rank' === $pk_type ) : ?>
 									<ul class="pq-rank">
 										<?php

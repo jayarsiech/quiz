@@ -50,7 +50,7 @@
 		if (t === 'radio') { var r = el.querySelector('input:checked'); return r ? r.value : ''; }
 		if (t === 'checkbox') { return $$('input:checked', el).map(function (i) { return i.value; }); }
 		if (t === 'rank') { return $$('.pq-option', el).map(function (o) { return o.getAttribute('data-opt'); }); }
-		var i2 = el.querySelector('input,textarea');
+		var i2 = el.querySelector('input,textarea,select');
 		return i2 ? i2.value : '';
 	}
 	function isEmptyV(v) { return v === '' || (Array.isArray(v) && v.length === 0); }

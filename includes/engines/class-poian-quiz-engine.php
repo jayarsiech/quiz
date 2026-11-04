@@ -7,7 +7,7 @@ abstract class Poian_Quiz_Engine {
 	abstract public function get_title();
 
 	public function get_field_types() {
-		return array( 'radio', 'checkbox', 'rank', 'text', 'textarea', 'description', 'heading' );
+		return array( 'radio', 'checkbox', 'select', 'rank', 'text', 'textarea', 'description', 'heading' );
 	}
 
 	public function supports_option_weights() {

@@ -41,6 +41,7 @@ final class Poian_Quiz_Schema {
 
 			switch ( $type ) {
 				case 'radio':
+				case 'select':
 					if ( ! is_string( $value ) && ! is_numeric( $value ) ) { return self::bad(); }
 					if ( ! in_array( (string) $value, $option_keys, true ) ) { return self::bad(); }
 					$clean[ $fid ] = (string) $value;
@@ -214,7 +215,7 @@ final class Poian_Quiz_Schema {
 	 * ساختار جدید: آرایه fields در ریشه (نه pages).
 	 */
 	public static function sanitize_schema( array $raw ) {
-		$types = array( 'radio', 'checkbox', 'rank', 'text', 'textarea', 'description', 'heading', 'page_break' );
+		$types = array( 'radio', 'checkbox', 'select', 'rank', 'text', 'textarea', 'description', 'heading', 'page_break' );
 		$out   = array(
 			'title'  => isset( $raw['title'] ) ? sanitize_text_field( $raw['title'] ) : '',
 			'fields' => array(),
@@ -236,7 +237,6 @@ final class Poian_Quiz_Schema {
 			);
 
 			// فیلدهای ویژه page_break
-				// فیلدهای ویژه page_break
 			if ( 'page_break' === $type ) {
 				$field['heading']      = isset( $f['heading'] ) ? sanitize_text_field( $f['heading'] ) : '';
 				$field['description']  = isset( $f['description'] ) ? sanitize_textarea_field( $f['description'] ) : '';

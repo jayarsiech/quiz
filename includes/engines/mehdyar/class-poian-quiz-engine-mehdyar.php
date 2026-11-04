@@ -22,7 +22,7 @@ final class Poian_Quiz_Engine_Mehdyar extends Poian_Quiz_Engine_Weighted_Sum {
 
 	public function get_id() { return 'mehdyar'; }
 	public function get_title() { return __( 'قطب‌نمای مهدیار', 'poian-quiz' ); }
-	public function get_field_types() { return array( 'radio', 'description', 'heading' ); }
+	public function get_field_types() { return array( 'radio', 'select', 'description', 'heading' ); }
 
 	/**
 	 * دریافت برچسب‌های فارسی مولفه‌ها (از engine_config فرم + fallback به پیش‌فرض).

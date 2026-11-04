@@ -36,7 +36,11 @@ final class Poian_Quiz_Admin_Form_Editor {
 		}
 		$schema  = Poian_Quiz_Schema::sanitize_schema( $schema_raw );
 		$actions = Poian_Quiz_Schema::sanitize_actions( json_decode( isset( $_POST['pq_actions_json'] ) ? wp_unslash( $_POST['pq_actions_json'] ) : '', true ) ?: array() );
-		$settings = $this->read_form_settings();
+
+		// 🔧 رفع باگ ریست شدن تنظیمات: ادغام با تنظیمات قبلی به‌جای بازنویسی کامل
+		$existing_settings = $form_id ? get_post_meta( $form_id, Poian_Quiz_Forms::META_SETTINGS, true ) : array();
+		if ( ! is_array( $existing_settings ) ) { $existing_settings = array(); }
+		$settings = array_merge( $existing_settings, $this->read_form_settings() );
 
 		// ۳) ساخت یا به‌روزرسانی فرم
 		if ( ! $form_id ) {
